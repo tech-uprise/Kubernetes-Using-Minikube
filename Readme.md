@@ -63,8 +63,19 @@ Usage:
 1.	Clone the repo or download as zip file.
 2.	Extract the zip file (if downloaded as .zip) and step into docker/compose folder.
 3.	Open command line editor/terminal and go into compose folder (where you saved or cloned the repo).
-4. 	To build and deploy on kubernetes, from compose folder run this shell script: "sh create.sh"
-5.	The URLs are auto launched for the following as I'm at this point I'm exposing to external world:
+4.	To build docker images to deploy on Kubernetes, execute "docker-compose build" from terminal.
+5. 	To build and deploy on kubernetes, from compose folder run this shell script: "sh create.sh"
+6.	The URLs are auto launched for the following as I'm at this point I'm exposing to external world:
 	a.	"minikube dashboard" (will launch: http://<IP>:30000
 	b.	Tomcat (ip:port), you then append the context path - the URL should like this in the end: http://<IP>:<PORT>/spring-elastic-kibana/
 	c.	Kibana UI (will launch: http://<IP>:5601
+7. If Kibana is able to connect but don't see any data from application - go to Kibana UI -->Dev Tools --> Console: and run the following command:
+		PUT spring_elastic_kibana
+	{
+    	"settings" : {
+        	"index" : {
+            	"number_of_shards" : 3, 
+            	"number_of_replicas" : 2 
+        	}
+    	}
+	}
