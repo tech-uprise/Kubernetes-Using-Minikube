@@ -24,7 +24,7 @@ Pre-requisites (I have done this on macOS High Sierra): Carefully follow the ste
 		kubectl get nodes  (note this is also in version.sh but the shell script will not start the minikube, so this is again to docuble check)
 -	Use minikube's built-in docker daemon(THIS IS VERY IMPORTANT)
 		eval $(minikube docker-env)
--	To verify is you are inside the minikube environment, run the following command:
+-	To verify if you are inside the minikube environment, run the following command:
 		docker ps
 -	Since my aplication uses elasticseach and it needs the following command to be executed. Otherwise, elasticsearch process will be killed and will not come up. Additionally, you will see an 		exception in the elasticsearch log: ERROR: bootstrap checks failed. max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
 		minikube ssh
