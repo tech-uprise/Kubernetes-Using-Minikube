@@ -1,0 +1,35 @@
+# APP DEPLOYMENT
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.8.0 (0c0c027)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: elasticservice
+  name: elasticservice
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: elasticservice
+    spec:
+      containers:
+      - env:
+        - name: ES_JAVA_OPTS
+          value: -Xms1024m -Xmx1024m
+        - name: GET_HOSTS_FROM
+          value: dns
+        image: localhost:5000/elastic-v540:0.1.0
+        name: elastic-v540
+        ports:
+        - containerPort: 9200
+        - containerPort: 9300
+        resources: {}
+      restartPolicy: Always
+status: {}

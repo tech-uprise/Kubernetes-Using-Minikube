@@ -1,0 +1,39 @@
+# APP DEPLOYMENT
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.8.0 (0c0c027)
+    type: NodePort
+  creationTimestamp: null
+  labels:
+    io.kompose.service: registerservice
+  name: registerservice
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: registerservice
+    spec:
+      containers:
+      - env:
+        - name: ADMIN_PORT
+          value: "9200"
+        - name: SOCKET_PORT
+          value: "9300"
+        - name: ELASTICSEARCH_HOST
+          value: "elasticservice"
+        - name: ELASTICSEARCH_INDEX
+          value: "spring_elastic_kibana"   
+        image: localhost:5000/spring-elastic-kibana:0.1.0
+        name: spring-elastic-kibana
+        ports:
+        - containerPort: 8080
+        resources: {}
+      restartPolicy: Always
+status: {}

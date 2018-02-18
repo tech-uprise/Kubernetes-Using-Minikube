@@ -1,0 +1,30 @@
+FROM openjdk:8-jre
+
+ENV KIBANA_HOME /usr/local/kibana
+
+ENV WORKING_DIR /usr/local/scripts
+
+#RUN apt-get update && \
+#      apt-get -y install sudo
+
+RUN apt-get update && apt-get install -y procps
+
+WORKDIR $WORKING_DIR
+ADD entrypoint-kibana.sh $WORKING_DIR
+ADD kibana.yml $WORKING_DIR
+RUN chmod -R 755 $WORKING_DIR
+
+RUN mkdir -p $KIBANA_HOME/kibana-5.4.0-linux-x86_64
+
+# install kibana
+
+	RUN wget https://artifacts.elastic.co/downloads/kibana/kibana-5.4.0-linux-x86_64.tar.gz && \
+		tar -xvf kibana-5.4.0-linux-x86_64.tar.gz && \
+	mv kibana-5.4.0-linux-x86_64 $KIBANA_HOME
+
+ADD kibana.yml $KIBANA_HOME/kibana-5.4.0-linux-x86_64/config/kibana.yml
+
+EXPOSE 5601 
+
+
+ENTRYPOINT ["/usr/local/scripts/entrypoint-kibana.sh"]

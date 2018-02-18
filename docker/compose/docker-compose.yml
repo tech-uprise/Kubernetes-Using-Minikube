@@ -1,0 +1,39 @@
+
+version: '3'
+
+services:
+
+  elasticservice:
+    build:
+      context: .
+      dockerfile: Dockerfile-elastic
+    image: localhost:5000/elastic-v540:0.1.0
+    container_name: elastic-v540
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment: 
+      ES_JAVA_OPTS: -Xms1024m -Xmx1024m
+      GET_HOSTS_FROM: dns
+
+  kibanaservice:
+    build:
+      context: .
+      dockerfile: Dockerfile-kibana
+    image: localhost:5000/kibana-v540:0.1.0
+    container_name: kibana-v540
+    depends_on: 
+      - elasticservice
+    ports:
+      - "5601:5601"
+
+  registerservice:
+    build:
+      context: .
+      dockerfile: Dockerfile-tomcat
+    image: localhost:5000/spring-elastic-kibana:0.1.0
+    container_name: elk-spring-mvc-web  
+    ports:
+      - "8080:8080" 
+    labels:
+      type: NodePort

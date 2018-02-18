@@ -1,0 +1,29 @@
+# Pull the base image for tomcat
+FROM tomcat:8-jre9
+
+ENV TOMCAT_HOME /usr/local/tomcat
+RUN mkdir -p /usr/local/scripts
+ENV WORKDIR /usr/local/scripts
+
+ENV KAFKA_HOST_NAME $KAFKA_HOST_NAME
+ENV KAFKA_PORT $KAFKA_PORT
+ENV KAFKA_TOPIC_NAME $KAFKA_TOPIC_NAME
+#ENV PROP_HOME $PROP_HOME
+
+
+# Copy images to tomcat path
+ADD spring-elastic-kibana.war $TOMCAT_HOME/webapps/
+ADD entrypoint-tomcat.sh /usr/local/scripts
+
+RUN chmod 755 /usr/local/scripts/entrypoint-tomcat.sh
+
+#WORKDIR /usr/local/scripts
+
+RUN echo $(ls -ltr /usr/local/scripts)
+
+EXPOSE 8080
+
+WORKDIR $WORKDIR
+
+ENTRYPOINT ["/usr/local/scripts/entrypoint-tomcat.sh"]
+

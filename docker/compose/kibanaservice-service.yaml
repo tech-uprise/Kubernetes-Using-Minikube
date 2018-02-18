@@ -1,0 +1,21 @@
+# APP SERVICE
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.8.0 (0c0c027)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: kibanaservice
+  name: kibanaservice
+spec:
+  ports:
+  - name: "5601"
+    port: 5601
+    targetPort: 5601
+  selector:
+    io.kompose.service: kibanaservice
+status:
+  loadBalancer: {}

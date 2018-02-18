@@ -1,0 +1,29 @@
+# APP DEPLOYMENT
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.8.0 (0c0c027)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: kibanaservice
+  name: kibanaservice
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: kibanaservice
+    spec:
+      containers:
+      - image: localhost:5000/kibana-v540:0.1.0
+        name: kibana-v540
+        ports:
+        - containerPort: 5601
+        resources: {}
+      restartPolicy: Always
+status: {}
