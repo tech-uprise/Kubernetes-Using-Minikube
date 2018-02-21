@@ -79,3 +79,13 @@ Usage:
         	}
     	}
 	}
+	
+-------------------------
+Reset everything:
+-------------------------
+
+1.	minikube stop;
+2.	minikube delete;
+3.	rm -rf ~/.minikube .kube;
+4.	brew uninstall kubectl;
+5.	brew cask uninstall docker virtualbox minikube;
