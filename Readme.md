@@ -61,7 +61,7 @@ Pre-requisites (I have done this on macOS High Sierra): Carefully follow the ste
 Usage:
 
 1.	Clone the repo or download as zip file.
-2.	Extract the zip file (if downloaded as .zip) and step into docker/compose folder.
+2.	Extract the zip file (if downloaded as .zip).
 3.	Open command line editor/terminal and go into compose folder (where you saved or cloned the repo).
 4.	To build docker images to deploy on Kubernetes, execute "docker-compose build" from terminal.
 5. 	To build and deploy on kubernetes, from compose folder run this shell script: "sh create.sh"
