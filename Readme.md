@@ -32,7 +32,7 @@ Pre-requisites (I have done this on macOS High Sierra): Carefully follow the ste
 		sudo sysctl -w vm.max_map_count=262144
 		exit
 -	To build, deploy and run an image on your local docker repo & k8s setup
-		docker run -d -p 5000:5000 --restart=always --name registry registry:2
+		"docker run -d -p 5000:5000 --restart=always --name registry registry:2"
 -	To build docker images and tag, I used the following:
 	b.	kompose convert (to create and deployment and services yaml files)
 	a.	kompose up -v (That built the images and tagged - note that I've already specified versioning (0.1.0) for my images in the docker-compose.yml, so no extra steps are required to tag.
