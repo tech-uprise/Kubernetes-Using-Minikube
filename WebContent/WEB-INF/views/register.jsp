@@ -152,12 +152,6 @@
                         </td>
                     </tr>
                     <tr></tr>
-<tr>
-                        <td></td>
-                        <td>
-                            This is a new line of text...Yash!
-                        </td>
-                    </tr>
                 </table>
             </form:form>
         </body>
