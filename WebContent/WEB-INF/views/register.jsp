@@ -150,14 +150,7 @@
                         <td>
                             <form:button id="register" name="register">Register</form:button>
                         </td>
-                    </tr>
-                               <tr>
-                        <td></td>
-                        <td>
-                            This is test text....
-                        </td>
-                    </tr>
-          
+                    </tr>       
                     <tr></tr>
                 </table>
             </form:form>
